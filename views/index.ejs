@@ -67,7 +67,7 @@
         <div class="file-upload" style="margin-top: 50px;">
           <form  method="POST" action="/create" id="myForm" enctype="multipart/form-data">
             <div class="image-upload-wrap">
-              <input class="file-upload-input" type='file' name="image1" onchange="readURL(this);" accept="image/*" />
+              <input class="file-upload-input" type="file" name="images[]" onchange="readURL(this);" accept="image/*" multiple />
               <div class="drag-text">
                 <b>Uploads images </b> <img src="https://cdn-icons-png.flaticon.com/512/69/69656.png" style="width: 30px; height: 25px; margin-bottom: 15px;" alt="...">
               </div>
@@ -78,17 +78,9 @@
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>
       function readURL(input) {
-        if (input.files && input.files[0]) {
+        if (input.files && input.files.length > 0) {
           document.getElementById("myForm").submit();
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('.image-upload-wrap').hide();
-            $('.file-upload-image').attr('src', e.target.result);
-            $('.file-upload-content').show();
-            $('.image-title').html(input.files[0].name);
-          };
-          reader.readAsDataURL(input.files[0]);
-        } 
+        }
       }
     </script>
 </body>
